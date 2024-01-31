@@ -1,0 +1,2625 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+using namespace std;
+class Name {
+private:
+	char* fName;
+	char* lName;
+public:
+	Name(char* Fn, char* lN);
+	void setfName(char*);
+	void setlName(char*);
+	char* getfName();
+	char* getlName();
+	~Name();
+	Name();
+	Name(Name&);
+	friend ostream& operator<<(ostream& out, const Name& n);
+
+};
+void Name::setfName(char* a)
+{
+	int i = 0;
+	for (i = 0; a[i] != '\0'; i++)
+	{
+	}
+	fName = new char[i + 1];
+	for (i = 0; a[i] != '\0'; i++)
+	{
+		fName[i] = a[i];
+	}
+	fName[i] = '\0';
+}
+void Name::setlName(char* lN)
+{
+	int i = 0;
+	for (i = 0; lN[i] != '\0'; i++)
+	{
+	}
+	lName = new char[i + 1];
+	for (i = 0; lN[i] != '\0'; i++)
+	{
+		lName[i] = lN[i];
+	}
+	lName[i] = '\0';
+}
+char* Name::getfName()
+{
+	return fName;
+}
+char* Name::getlName()
+{
+	return lName;
+}
+Name::~Name()
+{
+	if (fName==NULL)
+	{
+		delete[]fName;
+		fName = NULL;
+	}
+	if (lName==NULL)
+	{
+		delete[]lName;
+		lName = NULL;
+	}
+}
+Name::Name()
+{
+	fName = 0;
+	lName = 0;
+}
+Name::Name(char* a, char* b)
+{
+	int i = 0;
+	for (i = 0; a[i] != '\0'; i++)
+	{
+	}
+	fName = new char[i + 1];
+	for (i = 0; a[i] != '\0'; i++)
+	{
+		fName[i] = a[i];
+	}
+	fName[i] = '\0';
+	i = 0;
+	for (i = 0; b[i] != '\0'; i++)
+	{
+	}
+	lName = new char[i + 1];
+	for (int i = 0; b[i] != '\0'; i++)
+	{
+		lName[i] = b[i];
+	}
+	lName[i] = '\0';
+
+}
+Name::Name(Name& obj)
+{
+	int i = 0;
+	for (i = 0; obj.fName[i] != '\0'; i++)
+	{
+	}
+	fName = new char[i + 1];
+	for (i = 0; obj.fName[i] != '\0'; i++)
+	{
+		fName[i] = obj.fName[i];
+	}
+	fName[i] = '\0';
+	for (i = 0; obj.lName[i] != '\0'; i++)
+	{
+	}
+	lName = new char[i + 1];
+	for (i = 0; obj.lName[i] != '\0'; i++)
+	{
+		lName[i] = obj.lName[i];
+	}
+	lName[i] = '\0';
+}
+ostream& operator<<(ostream& out, const Name& n)
+{
+	out << n.fName << " " << n.lName << endl;
+	return out;
+}
+
+
+
+class Date
+{
+	int day;
+	int month;
+	int year;
+public:
+	Date();
+	Date(int, int, int);
+	void setday(int);
+	void setmonth(int);
+	void setyear(int);
+	int getday();
+	int getmonth();
+	int getyear();
+	~Date();
+	friend ostream& operator<<(ostream& out, const Date& n);
+};
+Date::~ Date()
+{
+
+}
+Date::Date()
+{
+	day = 0; month = 0; year = 0;
+}
+Date::Date(int a, int b, int c)
+{
+	day = a;
+	month = b;
+	year = c;
+}
+void Date::setday(int a)
+{
+	day = a;
+}
+void Date::setmonth(int a)
+{
+	month = a;
+}
+void Date::setyear(int a)
+{
+	year = a;
+}
+int Date::getday()
+{
+	return day;
+}
+int Date::getmonth()
+{
+	return month;
+}
+int Date::getyear()
+{
+	return year;
+}
+ostream& operator<<(ostream& out, const Date& n)
+{
+	out << "Date: " << n.day << "/" << n.month << "/" << n.year << endl;
+	return out;
+}
+class mTime
+{
+	int hour;
+	int min;
+	int sec;
+public:
+	mTime();
+	mTime(int, int, int);
+	void sethour(int);
+	void setmin(int);
+	void setsec(int);
+	int gethour();
+	int getMin();
+	int getsec();
+	friend ostream& operator<<(ostream& out, const mTime& n);
+	~mTime();
+
+};
+mTime::~mTime()
+{
+
+
+}
+mTime::mTime()
+{
+	hour = 0; min = 0; sec = 0;
+}
+mTime::mTime(int a, int b, int c)
+{
+	hour = a; min = b; sec = c;
+
+}
+void mTime::sethour(int a)
+{
+	hour = a;
+}
+void mTime::setmin(int a)
+{
+	min = a;
+}
+void mTime::setsec(int a)
+{
+	sec = a;
+}
+int mTime::gethour()
+{
+	return hour;
+}
+int mTime::getMin()
+{
+	return min;
+
+}
+int mTime::getsec()
+{
+	return sec;
+}
+ostream& operator<<(ostream& out, const mTime& n)
+{
+	cout << "Time: " << n.hour << "/" << n.min << "/" << n.sec << endl;
+	return out;
+}
+class Service {
+	char* source;
+	char* destination;
+	float distance;
+	Date bookingDate;
+	mTime bookingTime;
+	int status;
+	float fuelrate;
+	int cId;
+	int dId;
+	int vId;
+	int ride;
+	int deliver;
+public:
+	Service()
+	{
+		source = NULL;
+		destination = NULL;
+		distance = 0;
+		status = 0;
+		fuelrate = 0;
+		cId = 0;
+		dId = 0;
+		vId = 0;
+		deliver = 0;
+		ride = 0;
+	}
+	int getstatus()
+	{
+		return status;
+	}
+	int getfuelrate()
+	{
+		return fuelrate;
+	}
+	int getvId()
+	{
+		return vId;
+	}
+	int getdId()
+	{
+		return dId;
+	}
+	int getcId()
+	{
+		return cId;
+	}
+	int getdistance()
+	{
+		return distance;
+	}
+	Date getbookingDate()
+	{
+		return bookingDate;
+	}
+	mTime getbookingTime()
+	{
+		return bookingTime;
+	}
+	char* getdestination()
+	{
+		return destination;
+	}
+	char* getsource()
+	{
+		return source;
+	}
+	void setstatus(int a)
+	{
+		status = a;
+	}
+	void setfuelrate(float a)
+	{
+		fuelrate = a;
+	}
+	void setvId(int a)
+	{
+		vId = a;
+	}
+	void setdId(int a)
+	{
+		dId = a;
+	}
+	void setcId(int a)
+	{
+		cId = a;
+	}
+	void setdistance(float d)
+	{
+		distance = d;
+	}
+	void setbookingDate(Date d)
+	{
+		bookingDate = d;
+	}
+	void setbookingTime(mTime d)
+	{
+		bookingTime = d;
+	}
+	void setdestination(char* d)
+	{
+		int i = 0;
+		for (i = 0; d[i] != '\0'; i++)
+		{
+		}
+		destination = new char[i + 1];
+		for (i = 0; d[i] != '\0'; i++)
+		{
+			destination[i] = d[i];
+		}
+		destination[i] = '\0';
+	}
+	void setsource(char* s)
+	{
+		int i = 0;
+		for (i = 0; s[i] != '\0'; i++)
+		{
+
+		}
+		source = new char[i + 1];
+		for (i = 0; s[i] != '\0'; i++)
+		{
+			source[i] = s[i];
+		}
+		source[i] = '\0';
+
+	}
+	void setride(int a)
+	{
+		ride = a;
+	}
+	void setdelivery(int a)
+	{
+		deliver = a;
+	}
+	int getride()
+	{
+		return ride;
+	}
+	int getdelivery()
+	{
+		return deliver;
+	}
+	Service(char* s, char* d, float dist, Date book, mTime time, bool stat, float fuelr, int cid, int did, int vid)
+	{
+		int i = 0;
+		for (i = 0; s[i] != '\0'; i++)
+		{
+		}
+		source = new char[i + 1];
+		for (i = 0; s[i] != '\0'; i++)
+		{
+			source[i] = s[i];
+		}
+		source[i] = '\0';
+		i = 0;
+		for (i = 0; d[i] != '\0'; i++)
+		{
+		}
+		destination = new char[i + 1];
+		for (i = 0; d[i] != '\0'; i++)
+		{
+			destination[i] = d[i];
+		}
+		destination[i] = '\0';
+		distance = dist;
+		bookingDate = book;
+		bookingTime = time;
+		status = stat;
+		fuelrate = fuelr;
+		cId = cid;
+		dId = did;
+		vId = vid;
+	}
+	~Service();
+	friend ostream& operator<<(ostream&, Service&);
+	virtual void printservice()
+	{
+		cout << "Service: " << endl;
+		cout << "Source: " << source << " Destination: " << destination << " Distance: " << getdistance() << " BookingDate: " << bookingDate << " BookingTime: " << bookingTime << " Status: " << status << " Fuelrate: " << fuelrate << " cId:" << cId << " dId:" << dId << " vId: " << vId << endl;
+	}
+};
+Service::~Service()
+{
+
+}
+ostream& operator<<(ostream& out, Service& s1)
+{
+
+	cout << "Service: " << endl;
+	cout << "Source: " << s1.source << " Destination: " << s1.destination << " Distance: " << s1.getdistance() << " BookingDate: " << s1.bookingDate << " BookingTime: " << s1.bookingTime << " Status: " << s1.status << " Fuelrate: " << s1.fuelrate << " cId:" << s1.cId << " dId:" << s1.dId << " vId: " << s1.vId << endl;
+	return out;
+}
+class Ride : public Service {
+	int noofPassengers;
+	char* rideType;
+	float DriverRanking;
+	float VehicleRanking;
+public:
+	Ride()
+	{
+		noofPassengers = 0;
+		rideType = NULL;
+		DriverRanking = 0;
+		VehicleRanking = 0;
+
+	}
+	Ride(int n, char* rt, float dr, float vr, char* s, char* d, float dist, Date book, mTime time, bool stat, float fuelr, int cid, int did, int vid) :Service(s, d, dist, book, time, stat, fuelr, cid, did, vid)
+	{
+		noofPassengers = n;
+		rideType = rt;
+		DriverRanking = dr;
+		VehicleRanking = vr;
+	}
+	float getVehicleRanking()
+	{
+		return VehicleRanking;
+	}
+	float getDriverRanking()
+	{
+		return DriverRanking;
+	}
+	int getnoofPassengers()
+	{
+		return noofPassengers;
+	}
+	char* getrideType()
+	{
+		return rideType;
+	}
+	void setVehicleRanking(float a)
+	{
+		VehicleRanking = a;
+	}
+	void setDriverRanking(float x)
+	{
+		DriverRanking = x;
+	}
+	void setnoofPassengers(int passenger)
+	{
+		noofPassengers = passenger;
+	}
+	void setrideType(char* a)
+	{
+		int i = 0;
+		for (i = 0; a[i] != '\0'; i++)
+		{
+
+		}
+		rideType = new char[i + 1];
+		for (i = 0; a[i] != '\0'; i++)
+		{
+			rideType[i] = a[i];
+		}
+		rideType[i] = '\0';
+	}
+	friend ostream& operator<<(ostream& out, Ride& r1);
+	void printservice()
+	{
+		cout << "Service: " << endl;
+		cout << "Source: " << getsource() << " Destination: " << getdestination() << " Distance: " << getdistance() << " BookingDate: " << getbookingDate() << " BookingTime: " << getbookingTime() << " Status: " << getstatus() << " Fuelrate: " << getfuelrate() << " cId:" << getcId() << " dId:" << getdId() << " vId: " << getvId() << endl;
+	}
+};
+ostream& operator<<(ostream& out, Ride& r1)
+{
+
+	cout << "Service: " << endl;
+	cout << "Source: " << r1.getsource() << " Destination: " << r1.getdestination() << " Distance: " << r1.getdistance() << " BookingDate: " << r1.getbookingDate() << " BookingTime: " << r1.getbookingTime() << " Status: " << r1.getstatus() << " Fuelrate: " << r1.getfuelrate() << " cId:" << r1.getcId() << " dId:" << r1.getdId() << " vId: " << r1.getvId() << endl;
+	return out;
+}
+class Deliver :public Service {
+	float goodsWeight;
+	char* goodsType;
+public:
+	Deliver()
+	{
+		goodsWeight = 0;
+		goodsType = NULL;
+	}
+	Deliver(float gw, char* gt, char* s, char* d, float dist, Date book, mTime time, bool stat, float fuelr, int cid, int did, int vid) :Service(s, d, dist, book, time, stat, fuelr, cid, did, vid)
+	{
+		goodsWeight = gw;
+		goodsType = gt;
+	}
+	float getgoodsWeight()
+	{
+		return goodsWeight;
+	}
+	char* getgoodsType()
+	{
+		return goodsType;
+	}
+	void setgoodsWeight(float a)
+	{
+		goodsWeight = a;
+	}
+	void setgoodsType(char* a)
+	{
+		int i = 0;
+		for (i = 0; a[i] != '\0'; i++)
+		{
+
+		}
+		goodsType = new char[i + 1];
+		for (i = 0; a[i] != '\0'; i++)
+		{
+			goodsType[i] = a[i];
+		}
+		goodsType[i] = '\0';
+	}
+
+	void printservice()
+	{
+		cout << "GoodsWeight: " << getgoodsWeight() << endl << "GoodsType: " << getgoodsType() << endl;
+		cout << "Service: " << endl;
+		cout << "Source: " << getsource() << " Destination: " << getdestination() << " Distance: " << getdistance() << " BookingDate: " <<getbookingDate() << " BookingTime: " << getbookingTime() << " Status: " << getstatus() << " Fuelrate: " << getfuelrate() << " cId:" << getcId() << " dId:" << getdId() << " vId: " << getvId() << endl;
+	}
+
+
+
+	friend ostream& operator<<(ostream& out, Deliver& d1);
+};
+ostream& operator<<(ostream& out, Deliver& d1)
+{
+	cout << "GoodsWeight: " << d1.getgoodsWeight() << endl << "GoodsType: " << d1.getgoodsType() << endl;
+	cout << "Service: " << endl;
+	cout << "Source: " << d1.getsource() << " Destination: " << d1.getdestination() << " Distance: " << d1.getdistance() << " BookingDate: " << d1.getbookingDate() << " BookingTime: " << d1.getbookingTime() << " Status: " << d1.getstatus() << " Fuelrate: " << d1.getfuelrate() << " cId:" << d1.getcId() << " dId:" << d1.getdId() << " vId: " << d1.getvId() << endl;
+	return out;
+
+}
+class Person {
+	Name pName;
+	Date DOB;
+	int Age;
+	int Nid;
+public:
+	Person()
+	{
+		Age = 0;
+		Nid = 0;
+	}
+	Person(Name& name, Date& dob, int age, int nid)
+	{
+		pName = name;
+		DOB = dob;
+		Age = age;
+		Nid = nid;
+	}
+	~Person()
+	{
+
+	}
+	void setname(Name& n)
+	{
+		pName = n;
+	}
+	void setdob(Date& dob)
+	{
+		DOB = dob;
+	}
+	void setage(int age)
+	{
+		Age = age;
+	}
+	void setnid(int nid)
+	{
+		Nid = nid;
+
+	}
+	Name getname()
+	{
+		return pName;
+	}
+	Date getdob()
+	{
+		return DOB;
+	}
+	int getage()
+	{
+		return Age;
+	}
+	int getnid()
+	{
+		return Nid;
+
+	}
+	Person(Person& p)
+	{
+		pName = p.pName;
+		DOB = p.DOB;
+		Age = p.Age;
+		Nid = p.Nid;
+	}
+	friend ostream& operator<<(ostream&, Person&);
+};
+ostream& operator<<(ostream& out, Person& p)
+{
+	out << "Person" << endl << " pName: " << p.pName << " DOB: " << p.DOB << " Age: " << p.Age << " Nid: " << p.Nid << endl;
+	return out;
+}
+class Customer :public Person {
+	int cId;
+	int noofservices;
+	Service** bookingHistory;
+public:
+	Customer()
+	{
+		cId = 0;
+		bookingHistory = NULL;
+		noofservices = 0;
+	}
+	Customer(int cid, Service** book)
+	{
+		cId = cid;
+		bookingHistory = book;
+	}
+	void setcId(int cid)
+	{
+		cId = cid;
+	}
+	void setbookingHistory(Service* a, int s)
+	{
+		noofservices = s;
+		bookingHistory = new Service * [s];
+		for (int i = 0; i < s; i++)
+		{
+			bookingHistory[i] = &a[i];
+		}
+	}
+	int getcId()
+	{
+		return cId;
+	}
+	Service** getbookingHistory()
+	{
+		return bookingHistory;
+	}
+	~Customer()
+	{
+
+	}
+	Customer(Customer& obj)
+	{
+		cId = obj.cId;
+		bookingHistory = obj.bookingHistory;
+	}
+	friend ostream& operator<<(ostream& out, Customer& c1)
+	{
+		out << "First Name: " << c1.getname() << endl << "Dob: " << c1.getdob() << endl << "Age: " << c1.getage() << endl << "Nid: " << c1.getnid() << endl << "Cid: " << c1.getcId();
+		cout << "Service history: " << endl;
+		for (int i = 0; i < c1.noofservices; i++)
+		{
+			cout << *c1.bookingHistory[i];
+		}
+		return out;
+	}
+
+};
+class Driver :public Person {
+	int dId;
+	char** LicenseList;
+	int noofLicenses;
+	float overallRanking;
+	float salary;
+	int experience;
+	int status;
+	int noofservices;
+	Service** serviceHistory;
+public:
+	Driver()
+	{
+		dId = 0;
+		LicenseList = NULL;
+		noofLicenses = 0;
+		overallRanking = 0;
+		salary = 0;
+		experience = 0;
+		status = 0;
+		serviceHistory = NULL;
+		noofservices = 0;
+	}
+	Driver(int did, char** liclist, int nooflicense, float Or, float sal, int exp, int stat, Service* sh, int noofservice, Name& name, Date& dob, int age, int nid) :Person(name, dob, age, nid)
+	{
+		dId = did;
+		int x = 0;
+		char** LicenseList = new char* [nooflicense];
+		for (int i = 0; i < nooflicense; i++)
+		{
+			for (int j = 0; liclist[i][j] != '\0'; j++)
+			{
+				x++;
+			}
+			LicenseList[i] = new char[x + 1];
+			x = 0;
+		}
+		int j = 0;
+		for (int i = 0; i < nooflicense; i++)
+		{
+			for (j = 0; liclist[i][j] != '\0'; j++)
+			{
+				LicenseList[i][j] = liclist[i][j];
+			}
+			LicenseList[i][j] = '\0';
+		}
+		noofservices = noofservice;
+		serviceHistory = new Service * [noofservice];
+		for (int i = 0; i < noofservice; i++)
+		{
+			serviceHistory[i] = &sh[i];
+		}
+		noofLicenses = nooflicense;
+		overallRanking = Or;
+		salary = sal;
+		experience = exp;
+		status = stat;
+	}
+	Driver(Driver& obj)
+	{
+		dId = obj.dId;
+		LicenseList = obj.LicenseList;
+		noofLicenses = obj.noofLicenses;
+		overallRanking = obj.overallRanking;
+		salary = obj.salary;
+		experience = obj.experience;
+		status = obj.status;
+		serviceHistory = obj.serviceHistory;
+		noofservices = obj.noofservices;
+
+	}
+	void setdId(int did)
+	{
+		dId = did;
+	}
+	void setlicenselist(char** a, int nooflicense)
+	{
+		int x = 0;
+		int j = 0;
+		LicenseList = new char* [nooflicense];
+		for (int i = 0; i < nooflicense; i++)
+		{
+			for (j = 0; a[i][j] != '\0'; j++)
+			{
+				x++;
+			}
+			LicenseList[i] = new char[x + 1];
+			x = 0;
+		}
+		for (int i = 0; i < nooflicense; i++)
+		{
+			for (j = 0; a[i][j] != '\0'; j++)
+			{
+				LicenseList[i][j] = a[i][j];
+			}
+			LicenseList[i][j] = '\0';
+		}
+	}
+	void setnoofLicenses(int a)
+	{
+		noofLicenses = a;
+	}
+	void setoverallRanking(float Or)
+	{
+		overallRanking = Or;
+	}
+	void setsalary(float sal)
+	{
+		salary = sal;
+	}
+	void setexperience(int exp)
+	{
+		experience = exp;
+	}
+	void setstatus(int stat)
+	{
+		status = stat;
+	}
+	void setservicehistory(Service* sh, int s)
+	{
+		noofservices = s;
+		serviceHistory = new Service * [s];
+		for (int i = 0; i < s; i++)
+		{
+			serviceHistory[i] = &sh[i];
+		}
+	}
+	int getdId()
+	{
+		return dId;
+	}
+	int getnoofLicenses()
+	{
+		return noofLicenses;
+	}
+	char** getlicenselist()
+	{
+		return LicenseList;
+	}
+	float getoverallRanking()
+	{
+		return overallRanking;
+	}
+	float getsalary()
+	{
+		return salary;
+	}
+	int getexperience()
+	{
+		return experience;
+	}
+	int getstatus()
+	{
+		return status;
+	}
+	Service** getservicehistory()
+	{
+		return serviceHistory;
+	}
+	friend ostream& operator<<(ostream&, Driver&);
+};
+ostream& operator<<(ostream& out, Driver& d)
+{
+	out << "Name: " << d.getname() << endl << "Age: " << d.getage() << endl << "Dob: " << d.getdob() << endl << "Nid: " << d.getnid() << endl;
+	out << "dId: " << d.dId << endl;
+	cout << "License List: " << endl;
+	for (int i = 0; i < d.noofLicenses; i++)
+	{
+		cout << d.LicenseList[i] << endl;
+	}
+	cout << "Service History: " << endl;
+	for (int i = 0; i < d.noofservices; i++)
+	{
+		cout << *d.serviceHistory[i];
+	}
+	out << " NoOfLicenses: " << d.noofLicenses << endl << " OverallRanking: " << d.overallRanking << endl << " Salary: " << d.salary << endl << " Experience: " << d.experience << endl << " Status: " << d.status << endl;
+	return out;
+
+}
+class Feature {
+	int fId;
+	char* description;
+	float cost;
+public:
+	Feature()
+	{
+		fId = 0;
+		description = NULL;
+		cost = 0;
+	}
+	Feature(int id, char* desc, float cos)
+	{
+		fId = id;
+		int i = 0;
+		for (i = 0; desc[i] != '\0'; i++)
+		{
+		}
+		description = new char[i + 1];
+		for (i = 0; desc[i] != '\0'; i++)
+		{
+			description[i] = desc[i];
+		}
+		description[i] = '\0';
+		cost = cos;
+	}
+	char* getdescription()
+	{
+		return description;
+	}
+	void setcost(float a)
+	{
+		cost = a;
+	}
+	void setfId(int a)
+	{
+		fId = a;
+	}
+	void setdescription(char* a)
+	{
+		int i = 0;
+		for (i = 0; a[i] != '\0'; i++)
+		{
+		}
+		description = new char[i + 1];
+		for (i = 0; a[i] != '\0'; i++)
+		{
+			description[i] = a[i];
+		}
+		description[i] = '\0';
+	}
+
+};
+class Vehicle {
+	int vId;
+	int registerationNo;
+	float avgMileage;
+	char* LicenseType;
+	bool status;
+	char* fueltype;
+	float overallRanking;
+	Date manufacturingDate;
+	Feature* list;
+	int noofservices;
+	Service** serviceHistory;
+public:
+	int getvId()
+	{
+		return vId;
+	}
+	int getstatus()
+	{
+		return status;
+	}
+	void setlist(Feature* a)
+	{
+		list = a;
+
+		list->setdescription(a->getdescription());
+	}
+	char* getlicensetype()
+	{
+		return LicenseType;
+	}
+	char* getfueltype()
+	{
+		return fueltype;
+	}
+	float getoverallranking()
+	{
+		return overallRanking;
+	}
+	Date getmandate()
+	{
+		return manufacturingDate;
+	}
+	Feature* getfeature()
+	{
+		return list;
+	}
+	void setmanufacturingDate(Date a)
+	{
+		manufacturingDate = a;
+	}
+	void setservicehistory(Service* s, int a)
+	{
+		noofservices = a;
+		serviceHistory = new Service * [a];
+		for (int i = 0; i < noofservices; i++)
+		{
+			serviceHistory[i] = &s[i];
+		}
+
+	}
+	void setoverallRanking(float a)
+	{
+		overallRanking = a;
+	}
+	void setfueltype(char* a)
+	{
+		int i = 0;
+		for (i = 0; a[i] != '\0'; i++)
+		{
+		}
+		fueltype = new char[i + 1];
+		for (i = 0; a[i] != '\0'; i++)
+		{
+			fueltype[i] = a[i];
+		}
+		fueltype[i] = '\0';
+	}
+	void setstatus(bool a)
+	{
+		status = a;
+	}
+	void setLicenseType(char* a)
+	{
+		int i = 0;
+		for (i = 0; a[i] != '\0'; i++)
+		{
+		}
+		LicenseType = new char[i + 1];
+		for (i = 0; a[i] != '\0'; i++)
+		{
+			LicenseType[i] = a[i];
+		}
+		LicenseType[i] = '\0';
+	}
+	void setvId(int a)
+	{
+		vId = a;
+	}
+	void setregisterationNo(int a)
+	{
+		registerationNo = a;
+	}
+	void setavgMileage(float a)
+	{
+		avgMileage = a;
+	}
+	float getavgMileage()
+	{
+		return avgMileage;
+	}
+
+	Vehicle()
+	{
+		vId = 0;
+		registerationNo = 0;
+		avgMileage = 0;
+		LicenseType = 0;
+		status = 0;
+		fueltype = 0;
+		overallRanking = 0;
+		noofservices = 0;
+		manufacturingDate.setday(0);
+		manufacturingDate.setmonth(0);
+		manufacturingDate.setyear(0);
+		list = NULL;
+		serviceHistory = NULL;
+	}
+	Vehicle(int vid, int regno, float avgmileage, char* licensetype, bool stat, char* fuel, float Or, Date mD, Feature* lis, Service** sh)
+	{
+		vId = vid;
+		registerationNo = regno;
+		avgMileage = avgmileage;
+		int i = 0;
+		for (i = 0; licensetype[i] != '\0'; i++)
+		{
+		}
+		LicenseType = new char[i + 1];
+		i = 0;
+		for (i = 0; licensetype[i] != '\0'; i++)
+		{
+			LicenseType[i] = licensetype[i];
+		}
+		LicenseType[i] = '\0';
+		status = stat;
+		for (i = 0; fuel[i] != '\0'; i++)
+		{
+		}
+		fueltype = new char[i + 1];
+		i = 0;
+		for (i = 0; fuel[i] != '\0'; i++)
+		{
+			fueltype[i] = fuel[i];
+		}
+		fueltype[i] = '\0';
+		overallRanking = Or;
+		manufacturingDate = mD;
+		list = lis;
+		fuel = new char[i + 1];
+		i = 0;
+		for (i = 0; fuel[i] != '\0'; i++)
+		{
+			fueltype[i] = fuel[i];
+		}
+		fueltype[i] = '\0';
+	}
+	friend ostream& operator<<(ostream&, const Vehicle&);
+
+};
+ostream& operator<<(ostream& out, const Vehicle& v1)
+{
+	out << "Vid: " << v1.vId << endl << " RegNo: " << v1.registerationNo << endl << " AvgMileage: " << v1.avgMileage << endl << "LicenseType: " << v1.LicenseType << endl << "Status: " << v1.status << endl << "FuelType: " << v1.fueltype << endl << "OverallRanking: " << v1.overallRanking << endl << "ManufacturingDate: " << v1.manufacturingDate << endl << "List: " << v1.list << endl;
+	for (int i = 0; i < v1.noofservices; i++)
+	{
+		cout << *v1.serviceHistory[i] << endl;
+	}
+	return out;
+}
+
+
+
+class tms {
+	Person* p1;
+	Service* s1;
+	Vehicle* v1;
+	Driver* d1;
+	Customer* c1;
+	int psize;
+	int ssize;
+	int vsize;
+	int dsize;
+	int csize;
+public:
+	tms()
+	{
+		p1 = NULL;
+		s1 = NULL;
+		v1 = NULL;
+		d1 = NULL;
+		c1 = NULL;
+	}
+	void loadfiles()
+	{
+		int custcount = 0;
+		fstream file;
+		file.open("customer.txt");
+		char a[20];
+		/*char* s1;
+		s1 = new char[10];
+		cin.getline(s1, 10);
+		char* s2;
+		s2 = new char[10];
+		cin.getline(s2, 10);
+		Name n1(s1,s2);
+		cout << n1 << endl;
+		mTime m1(4, 5, 6);
+		Date d1(12, 12, 2012);
+		Service s3(s1, s2, 10, d1, m1, 1, 30.7, 123, 345, 456);
+		Service** s10;
+		cout << s3;
+		Person p1(n1, d1, 10, 20);
+		cout << p1;
+		cout << m1;
+		char** s5;
+		s5 = new char*[1];
+		s5[0] =new char[1];
+		s5[0][0] = 'q';
+		float x = 0.1;
+		float y = 0.01;
+		Driver d11(10,s5, 20, x, y, 10000, 5,s10,n1,d1,200,1);
+		cout << d11;*/
+		char b[500];
+		while (!file.eof())
+		{
+			file.getline(b, 500);
+			custcount++;
+		}
+		cout << "                                    CUSTOMERS" << endl;
+		Customer* c1;
+		c1 = new Customer[15];
+		file.close();
+		Name n;
+		Date d;
+		int sum = 0;
+		int x = 0;
+		//for (int i = 0; i < custcount; i++)
+		//{
+		//	cout << c1[i] << endl;
+		//}
+		file.close();
+		file.open("services.txt");
+		int servcount = 0;
+		int ridecount = 0;
+		int delivercount = 0;
+		while (!file.eof())
+		{
+			file.getline(b, 500);
+			if (a[0] == 0)
+			{
+				ridecount++;
+			}
+			else if (a[0] == 1)
+			{
+				delivercount++;
+			}
+			servcount++;
+		}
+		file.close();
+		cout << "                                  SERVICES" << endl;
+		file.open("services.txt");
+		int inp = 0;
+		Ride* r1;
+		Deliver* del;
+		r1 = new Ride[10];
+		char* ridet;
+		float temp1 = 0;
+		del = new Deliver[10];
+		mTime t1;
+		int i = 0;
+		int j = 0;
+		float temp = 0;
+		while (!file.eof())
+		{
+			file.getline(a, 20, ',');
+
+			if (a[0] == '0')
+			{
+
+				r1[i].setride(a[0]-48);
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				r1[i].setnoofPassengers(sum);
+				file.getline(a, 20, ',');
+				r1[i].setrideType(a);
+				file.getline(a, 20, '.');
+				sum = 0;
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					temp = temp * 0.1 + (a[i] - 48);
+				}
+				temp = temp * 0.1;
+				temp1 = sum + temp;
+				r1[i].setDriverRanking(sum);
+
+				sum = 0;
+				file.getline(a, 20, '.');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					temp = temp * 0.1 + (a[i] - 48);
+				}
+				temp = temp * 0.1;
+				temp1 = sum + temp;
+				r1[i].setVehicleRanking(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				r1[i].setsource(a);
+				file.getline(a, 20, ',');
+				r1[i].setdestination(a);
+				file.getline(a, 20, ',');
+
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				r1[i].setdistance(sum);
+				sum = 0;
+				file.getline(a, 20, '/');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				d.setday(sum);
+				sum = 0;
+				file.getline(a, 20, '/');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				d.setmonth(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				d.setyear(sum);
+				r1[i].setbookingDate(d);
+				sum = 0;
+
+				file.getline(a, 20, '/');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				t1.sethour(sum);
+				sum = 0;
+				file.getline(a, 20, '/');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				t1.setmin(sum);
+				sum = 0;
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				t1.setsec(sum);
+				r1[i].setbookingTime(t1);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				r1[i].setstatus(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				r1[i].setfuelrate(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				r1[i].setcId(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				r1[i].setdId(sum);
+				sum = 0;
+				file.getline(a, 20);
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				r1[i].setvId(sum);
+				sum = 0;
+				i++;
+			}
+			else if (a[0] == '1')
+			{
+			del[j].setdelivery(a[0] - 48);
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				del[j].setgoodsWeight(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				del[j].setgoodsType(a);
+				file.getline(a, 20, ',');
+				del[j].setsource(a);
+				file.getline(a, 20, ',');
+				del[j].setdestination(a);
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				del[j].setdistance(sum);
+				sum = 0;
+				file.getline(a, 20, '/');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				d.setday(sum);
+				sum = 0;
+				file.getline(a, 20, '/');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				d.setmonth(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				d.setyear(sum);
+				del[j].setbookingDate(d);
+				sum = 0;
+
+				file.getline(a, 20, '/');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				t1.sethour(sum);
+				sum = 0;
+				file.getline(a, 20, '/');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				t1.setmin(sum);
+				sum = 0;
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				t1.setsec(sum);
+				del[j].setbookingTime(t1);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				del[j].setstatus(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				del[j].setfuelrate(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				del[j].setcId(sum);
+				sum = 0;
+				file.getline(a, 20, ',');
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				del[j].setdId(sum);
+				sum = 0;
+				file.getline(a, 20);
+				for (int i = 0; a[i] != '\0'; i++)
+				{
+					sum = sum * 10 + (a[i] - 48);
+				}
+				del[j].setvId(sum);
+				sum = 0;
+				j++;
+			}
+		}
+		/*for (int z = 0; z < i; z++)
+		{
+			cout << r1[z] << endl;
+		}*/
+		/*for (int i = 0; i < servcount; i++)
+		{
+			cout << s1[i]<<endl;
+		}*/
+		file.close();
+		file.ignore();
+				file.open("vehicle.txt");
+		Service* A1;
+		A1 = new Service[15];
+		int z = 0;
+		for (z = 0; z < i; z++)
+		{
+			A1[z] = r1[z];
+		}
+		for (int x = 0; x < j; x++)
+		{
+			A1[z] = del[x];
+			z++;
+		}
+		setservice(A1, servcount);
+		int vehiccount = 0;
+		temp = 0;
+		Vehicle* v1;
+		Feature* f1 = new Feature[1];
+		Service* A2;
+		while (!file.eof())
+		{
+			file.getline(b, 500);
+			vehiccount++;
+		}
+		file.close();
+		file.ignore();
+		file.open("customer.txt");
+		while (!file.eof())
+		{
+			sum = 0;
+			file.getline(a, 20, ',');
+			int h = 0;
+			n.setfName(a);
+			file.getline(a, 20, ',');
+			n.setlName(a);
+			c1[x].setname(n);
+			file.getline(a, 20, '/');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = (a[i] - 48) + sum * 10;
+			}
+			d.setday(sum);
+			file.getline(a, 20, '/');
+			sum = 0;
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = (a[i] - 48) + sum * 10;
+			}
+			d.setmonth(sum);
+			file.getline(a, 20, ',');
+			sum = 0;
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = (a[i] - 48) + sum * 10;
+			}
+			d.setyear(sum);
+			c1[x].setdob(d);
+			file.getline(a, 20, ',');
+			sum = 0;
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = (a[i] - 48) + sum * 10;
+			}
+			c1[x].setage(sum);
+			file.getline(a, 20, ',');
+			sum = 0;
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = (a[i] - 48) + sum * 10;
+			}
+			c1[x].setnid(sum);
+			file.getline(a, 20);
+			sum = 0;
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = (a[i] - 48) + sum * 10;
+			}
+			c1[x].setcId(sum);
+			for (int i = 0; i < vehiccount; i++)
+			{
+				if (A1[i].getcId() == sum)
+				{
+					h++;
+				}
+			}
+			A2 = new Service[h];
+			h = 0;
+			for (int i = 0; i < vehiccount; i++)
+			{
+				if (A1[i].getcId() == sum)
+				{
+					A2[h] = A1[i];
+					h++;
+				}
+			}
+			c1[i].setbookingHistory(A2, h);
+			x++;
+		}
+		setcust(c1, custcount);
+		file.open("vehicle.txt");
+		while (!file.eof())
+		{
+			file.getline(b, 500);
+			vehiccount++;
+		}
+		file.close();
+		v1 = new Vehicle[vehiccount];
+		i = 0;
+		int h = 0;
+		file.open("vehicle.txt");
+		cout << "                          VEHICLE " << endl;
+		while (!file.eof())
+		{
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			v1[i].setvId(sum);
+			for (int i = 0; i < vehiccount; i++)
+			{
+				if (A1[i].getvId() == sum)
+				{
+					h++;
+				}
+			}
+			A2 = new Service[h];
+			h = 0;
+			for (int i = 0; i < vehiccount; i++)
+			{
+				if (A1[i].getvId() == sum)
+				{
+					A2[h] = A1[i];
+					h++;
+				}
+			}
+			v1[i].setservicehistory(A2, h);
+			h = 0;
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			v1[i].setregisterationNo(sum);
+			sum = 0;
+			file.getline(a, 20, '.');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				temp = temp * 0.1 + (a[i] - 48);
+			}
+			temp = temp * 0.1;
+			sum = sum + temp;
+			v1[i].setavgMileage(sum);
+			sum = 0;
+			file.getline(a, 20, ',');
+			v1[i].setLicenseType(a);
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			v1[i].setstatus(sum);
+			file.getline(a, 20, ',');
+			v1[i].setfueltype(a);
+			file.getline(a, 20, '.');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				temp = temp * 0.1 + (a[i] - 48);
+			}
+			temp = temp * 0.1;
+			sum = sum + temp;
+			v1[i].setoverallRanking(sum);
+			sum = 0;
+			file.getline(a, 20, '/');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d.setday(sum);
+			sum = 0;
+			file.getline(a, 20, '/');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d.setmonth(sum);
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d.setyear(sum);
+			v1[i].setmanufacturingDate(d);
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			(*f1).setfId(sum);
+			sum = 0;
+			file.getline(a, 20, ',');
+			(*f1).setdescription(a);
+			file.getline(a, 20);
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			(*f1).setcost(sum);
+			v1[i].setlist(f1);
+			i++;
+		}
+		/*for (int i = 0; i < vehiccount; i++)
+		{
+			cout << v1[i]<<endl;
+		}*/
+		setvehicle(v1, vehiccount);
+		file.close();
+		file.open("Driver1.txt");
+		int drivcount = 0;
+		while (!file.eof())
+		{
+			file.getline(b, 500);
+			drivcount++;
+		}
+		file.close();
+		file.open("Driver1.txt");
+		cout << "                                   DRIVERS" << endl;
+		char** list;
+		Driver* d1 = new Driver[drivcount];
+		i = 0;
+		int servdrive = 0;
+		while (!file.eof())
+		{
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = (a[i] - 48) + (sum * 10);
+			}
+			d1[i].setdId(sum);
+			for (int i = 0; i < servcount; i++)
+			{
+				if (A1[i].getdId() == sum)
+				{
+					servdrive++;
+				}
+			}
+			A2 = new Service[5];
+			int v = 0;
+			for (int i = 0; i < servcount; i++)
+			{
+				if (A1[i].getdId() == sum)
+				{
+					A2[v] = A1[i];
+					v++;
+				}
+			}
+			d1[i].setservicehistory(A2, servdrive);
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d1[i].setnoofLicenses(sum);
+			int s = 0;
+			list = new char* [sum];
+			for (int i = 0; i < sum; i++)
+			{
+				file.getline(a, 20, ',');
+				for (s = 0; a[s] != '\0'; s++)
+				{
+				}
+				list[i] = new char[s + 1];
+				for (int z = 0; z < s; z++)
+				{
+					list[i][z] = a[z];
+				}
+				list[i][s] = '\0';
+				s = 0;
+			}
+			d1[i].setlicenselist(list, sum);
+			sum = 0;
+			file.getline(a, 20, ',');
+			int k = 0;
+			for (k = 0; a[k] != '.'; k++)
+			{
+				sum = sum * 10 + (a[k] - 48);
+			}
+			float g = 0;
+			for (int j = k + 1; a[j] != '\0'; j++)
+			{
+				g = g * 0.1 + (a[j] - 48);
+			}
+			g = g * 0.1;
+			d1[i].setoverallRanking(sum + g);
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d1[i].setsalary(sum);
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d1[i].setexperience(sum);
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d1[i].setstatus(sum);
+			sum = 0;
+			file.getline(a, 20, ' ');
+			n.setfName(a);
+			file.getline(a, 20, ',');
+			n.setlName(a);
+			d1[i].setname(n);
+			file.getline(a, 20, '/');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d.setday(sum);
+			sum = 0;
+			file.getline(a, 20, '/');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d.setmonth(sum);
+			sum = 0;
+			file.getline(a, 20, ',');
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d.setyear(sum);
+			d1[i].setdob(d);
+			file.getline(a, 20, ',');
+			sum = 0;
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d1[i].setage(sum);
+			sum = 0;
+			file.getline(a, 20);
+			for (int i = 0; a[i] != '\0'; i++)
+			{
+				sum = sum * 10 + (a[i] - 48);
+			}
+			d1[i].setnid(sum);
+
+			i++;
+			servdrive = 0;
+		}
+		setdriver(d1, drivcount);
+		file.close();
+	}
+	void setservice(Service* s2, int noofservice)
+	{
+
+		ssize = noofservice;
+		s1 = new Service[noofservice];
+		for (int i = 0; i < noofservice; i++)
+		{
+			s1[i] = s2[i];
+		}
+	}
+	void setcust(Customer* a, int c)
+	{
+		csize = c;
+		c1 = new Customer[c];
+		for (int i = 0; i < c; i++)
+		{
+			c1[i] = a[i];
+		}
+	}
+	void setperson(Person* a, int c)
+	{
+
+		p1 = new Person[c];
+		for (int i = 0; i < c; i++)
+		{
+			p1[i] = a[i];
+		}
+	}
+	void setvehicle(Vehicle* a, int c)
+	{
+		vsize = c;
+		v1 = new Vehicle[c];
+		for (int i = 0; i < c; i++)
+		{
+			v1[i] = a[i];
+		}
+	}
+	void setdriver(Driver* a, int c)
+	{
+		dsize = c;
+		d1 = new Driver[c];
+		for (int i = 0; i < c; i++)
+		{
+			d1[i] = a[i];
+		}
+	}
+	void cancelride(int a,int b)
+	{
+		int servicecost = 0;
+		for (int i = 0; i < csize; i++)
+		{
+			if (a==c1[i].getcId()&&b==s1[i].getstatus())
+			{
+				servicecost = servicecost * 0.05 + servicecost;
+				s1[i].setstatus(3);
+			}
+		}
+
+	}
+	void printvehic(int a)
+	{
+
+		for (int i = 0; i < vsize; i++)
+		{
+			if (v1[i].getvId() == a)
+			{
+				cout << v1[i] << endl;
+			}
+		}
+	}
+
+	void deletememoryforall()
+	{
+		delete[]s1;
+		s1 = NULL;
+		delete[]v1;
+		v1 = NULL;
+		delete[]d1;
+		d1 = NULL;
+		delete[]c1;
+		c1=NULL;
+	}
+	void printfreevehic(int a)
+	{
+		cout << "Free Vehicles: " << endl;
+		for (int i = 0; i < vsize; i++)
+		{
+			if (v1[i].getstatus()==0)
+			{
+				cout << v1[i] << endl;
+			}
+		}
+		cout << "Free Drivers: " << endl;
+		int inp = 0;
+
+		int* id;
+		id = new int[dsize];
+		int high = 0;
+		int c = 0;
+		int l = 0;
+		int flag = 0;
+		for (int i = 0; i < dsize; i++)
+		{
+				for (int i = 0; i < dsize; i++)
+				{
+						if (d1[i].getoverallRanking() > high)
+						{
+							for (int i = 0; i < l; i++)
+							{
+								if (id[i]==d1[i].getdId())
+								{
+									flag = 1;
+								}
+							}
+							if (flag == 0)
+							{
+								high = d1[i].getdId();
+							}
+						}
+				}
+				id[l] = high;
+				l++;
+				high = 0;
+				if (d1[i].getstatus() == 0)
+				{
+					cout <<c<<". "<< d1[i] << endl;
+				}
+				c++;
+		}
+		cout << "Enter vehicle to choose" << endl;
+		cin >> inp;
+		cout << "Total Fare Created: " << endl;
+		cout<<v1[inp].getavgMileage()* (d1[inp].getoverallRanking());   //formula for service
+	}
+	void updatesalary()
+	{
+		fstream file;
+		file.open("Driver1.txt");
+		for (int i = 0; i < dsize; i++)
+		{
+			if (d1[i].getoverallRanking()>=4.5)
+			{
+				int sal = 0;
+				sal = d1[i].getsalary() + (d1[i].getsalary() * 0.15);
+				d1[i].setsalary(sal);
+				cout << "Driver Name: " << d1[i].getname()<<endl;
+				cout << "Updated Salary: " << d1[i].getsalary() << endl;
+			}
+		}
+	}
+	void printdriver(int a)
+	{
+		if (a == 5)
+		{
+			for (int i = 0; i < dsize; i++)
+			{
+				cout << d1[i] << endl;
+			}
+		}
+		else if (a == 9)
+		{
+			int id = 0;
+			cin >> id;
+			for (int i = 0; i < dsize; i++)
+			{
+				if (d1[i].getdId() == id)
+				{
+					cout << d1[i] << endl;
+				}
+			}
+		}
+		else if (a == 10)
+		{
+			for (int i = 0; i < dsize; i++)
+			{
+				if (d1[i].getoverallRanking() > 4.5)
+				{
+					cout << d1[i] << endl;
+				}
+			}
+		}
+		else if (a == 11)
+		{
+			for (int i = 0; i < dsize; i++)
+			{
+				if (d1[i].getnoofLicenses()>0)
+				{
+					cout << d1[i] << endl;
+				}
+			}
+
+		}
+	}
+	void printpendingdrive()
+	{
+		cout << "Pending Services: " << endl;
+		for (int i = 0; i < dsize; i++)
+		{
+			if (d1[i].getstatus()==2)
+			{
+				cout << d1[i] << endl;
+			}
+		}
+	}
+	void removedriver(int a)
+	{
+		fstream file;
+		Driver* d2;
+		d2 = new Driver[dsize];
+		for (int i = 0; i < dsize; i++)
+		{
+			d2[i] = d1[i];
+		}
+		delete[]d1;
+		d1 = new Driver[dsize - 1];
+		int x = 0;
+		for (int i = 0; i < dsize; i++)
+		{
+			if ((d2[i]).getdId() != a)
+			{
+				d1[x] = d2[i];
+				x++;
+			}
+		}
+		dsize--;
+		file.open("Driver1.txt");
+		for (int i = 0; i < dsize; i++)
+		{
+			file << d1[i] << endl;
+		}
+		d2 = NULL;
+		cout << "Removed Successfully" << endl;
+	}
+	void addvehic()
+	{
+		fstream file;
+		file.open("Vehicle.txt", ios::app);
+		int vId;
+		int regisno;
+		int day = 0;
+		int month = 0;
+		int year = 0;
+		float avgmileage = 0;
+		char* Lictype;
+		bool stat = 0;
+		char* fueltyp = 0;
+		float OR = 0;
+		Date manufac;
+		int fid = 0;
+		char* description;
+		float cost = 0;
+		Feature* l;
+		cout << "Vid: " << endl;
+		cin >> vId;
+		cout << "Registeration No: " << endl;
+		cin >> regisno;
+		cout << "AvgMileage: " << endl;
+		cin >> avgmileage;
+		cout << "Lic type" << endl;
+		Lictype = new char[50];
+		cin.ignore();
+		cin.getline(Lictype, 50);
+		cout << "Status: " << endl;
+		cin >> stat;
+		cout << "FuelType: " << endl;
+		cin.ignore();
+		fueltyp = new char[50];
+		cin.getline(fueltyp, 50);
+		cout << "Overall Ranking: " << endl;
+		cin >> OR;
+		cout << "Day " << endl;
+		cin >> day;
+		cout << "Month: " << endl;
+		cin >> month;
+		cout << "Year: " << endl;
+		cin >> year;
+		cout << "Feature" << endl;
+		cout << "fID: " << endl;
+		cin >> fid;
+		cout << "Description: " << endl;
+		cin.ignore();
+		description = new char[50];
+		cin.getline(description, 50);
+		cout << "Cost: " << endl;
+		cin >> cost;
+		file << endl << vId << "," << regisno << "," << avgmileage << "," << Lictype << "," << stat << "," << fueltyp << "," << OR << "," << day << "/" << month << "/" << year << "," << fid << "," << description << "," << cost << endl;
+		file.close();
+
+	}
+	void printsamedriver()
+	{
+		for (int i = 0; i < ssize; i++)
+		{
+			for (int j = 0; j < ssize; j++)
+			{
+				if (s1[i].getdelivery() == 0 && s1[j].getbookingDate().getday() == s1[i].getbookingDate().getday() && s1[i].getbookingDate().getmonth() == s1[j].getbookingDate().getmonth() && s1[i].getbookingDate().getyear() == s1[j].getbookingDate().getyear())
+				{
+					cout << d1[i] << endl;
+				}
+			}
+		}
+		
+
+	}
+	void printsamevehic()
+	{
+		int a = 0;
+		for (int i = 0; i < ssize; i++)
+		{
+			a = s1[i].getvId();
+			for (int j= 0; j < ssize; j++)
+			{
+				if (a==s1[j].getvId()&&i!=j)
+				{
+					cout << c1[i] << endl;
+					cout << "Next customer" << endl;
+					cout << c1[j] << endl;
+				}
+			}
+		}
+
+	}
+	void printcancelled()
+	{
+		for (int i = 0; i < ssize; i++)
+		{
+			if (s1[i].getstatus()==3)
+			{
+				cout << c1[i] << endl;
+			}
+		}
+	}
+	void removevehic(int a)
+	{
+		Vehicle* v2;
+		v2 = new Vehicle[vsize];
+		for (int i = 0; i < vsize; i++)
+		{
+			v2[i] = v1[i];
+		}
+		delete[]v1;
+		v1 = new Vehicle[vsize - 1];
+		int x = 0;
+		for (int i = 0; i < vsize; i++)
+		{
+			if ((v2[i]).getvId() != a)
+			{
+				v1[x] = v2[i];
+				x++;
+			}
+		}
+		vsize--;
+		fstream file;
+		file.open("vehicle.txt");
+		for (int i = 0; i < vsize; i++)
+		{
+			file << v1[i].getvId() << "," << v1[i].getavgMileage() << "," << v1[i].getlicensetype() << "," << v1[i].getstatus() << "," << v1[i].getfueltype() << "," << v1[i].getoverallranking() << "," << v1[i].getmandate() << "," << v1[i].getfeature() << endl;
+		}
+		v2 = NULL;
+		cout << "Removed Successfully" << endl;
+		file.close();
+
+
+	}
+	void adddriver()
+	{
+		int dId;
+		int noflicenses;
+		float overrank;
+		int salary = 0;
+		int exp = 0;
+		int status = 0;
+		string Fname;
+		string Lname;
+		int day = 0;
+		int month = 0;
+		int year = 0;
+		int age = 0;
+		int nId = 0;
+		fstream file;
+		file.open("Driver.txt", ios::app);
+		cout << "Enter dId: " << endl;
+		cin >> dId;
+		cout << "Enter no Of Licenses: " << endl;
+		cin >> noflicenses;
+		cout << "Overall Ranking: " << endl;
+		cin >> overrank;
+		cout << "Salary: " << endl;
+		cin >> salary;
+		cout << "Experience: " << endl;
+		cin >> exp;
+		cout << "Status: " << endl;
+		cin >> status;
+		cout << "First Name: " << endl;
+		cin >> Fname;
+		cout << "Last Name: " << endl;
+		cin >> Lname;
+		cout << "Day: " << endl;
+		cin >> day;
+		cout << "Month: " << endl;
+		cin >> month;
+		cout << "Year: " << endl;
+		cin >> year;
+		cout << "Age: " << endl;
+		cin >> age;
+		cout << "Nid: " << endl;
+		cin >> nId;
+		file << endl << dId << ",asdada, " << noflicenses << "," << overrank << "," << salary << "," << exp << "," << status << "," << Fname << " " << Lname << "," << day << "/" << month << "/" << year << "," << age << "," << nId << endl;
+		cout << "Added Successfully" << endl;
+		file.close();
+	}
+	void printcust(int a, int b)
+	{
+		if (b == 8)
+		{
+			for (int i = 0; i < csize; i++)
+			{
+				if (a == c1[i].getcId())
+				{
+					cout << c1[i] << endl;
+				}
+			}
+		}
+		else if (b == 4)
+		{
+			for (int i = 0; i < csize; i++)
+			{
+				cout << c1[i] << endl;
+			}
+		}
+
+	}
+	void updateservices(int a)
+	{
+		for (int i = 0; i < ssize; i++)
+		{
+			if (d1[i].getdId() == a)
+			{
+				cout << "Enter ranking for a driver" << endl;
+				float a;
+				cin >> a;
+				cout << "Enter ranking for a vehicle" << endl;
+				float b;
+				cin >> b;
+				d1[i].setoverallRanking(a);
+				v1[i].setoverallRanking(b);
+				Service ss;
+				cout << "Enter source" << endl;
+				char* source;
+				source = new char[100];
+				cin.getline( source,100);
+				cout << "Enter destination" << endl;
+				char* dest;
+				dest = new char[100];
+				cin.getline(dest,500);
+				float d;
+				cin >> d;
+				Date d11;
+				int day, month, year;
+				cin >> day;
+				cin >> month;
+				cin >> year;
+				d11.setday(day);
+				d11.setmonth(month);
+				d11.setyear(year);
+				mTime m1;
+				cin >> day;
+				cin >> month;
+				cin >> year;
+				m1.sethour(day);
+				m1.setmin(month);
+				m1.setsec(year);
+				int stat;
+				cin >> stat;
+				float fuel;
+				cin >> fuel;
+				int cid, vid, did;
+				cin >> cid;
+				cin >> vid;
+				cin >> did;
+				ss.setbookingDate(d11);
+				ss.setbookingTime(m1);
+				ss.setcId(cid);
+				ss.setdId(did);
+				ss.setvId(vid);
+				ss.setdestination(dest);
+				ss.setsource(source);
+			//	s1 = &ss;
+
+			}
+		}
+	}
+	void printcusthist(int a)
+	{
+		for (int i = 0; i < csize; i++)
+		{
+			if (a == c1[i].getcId())
+			{
+				cout << c1[i] << endl;
+			}
+		}
+	}
+	void printpendingdate(Date a)
+	{
+		for (int i = 0; i < ssize; i++)
+		{
+			if (s1[i].getstatus()==2&&a.getday()==s1[i].getbookingDate().getday()&& a.getmonth() == s1[i].getbookingDate().getmonth()&& a.getyear() == s1[i].getbookingDate().getyear())
+			{
+				cout << s1[i] << endl;
+			}
+		}
+
+	}
+	void addcust()
+	{
+		Name n;
+		Date d;
+		fstream file;
+		file.open("customer.txt", ios::app);
+		char* Fname;
+		char* Lname;
+		int day = 0;
+		int month = 0;
+		int year = 0;
+		int age = 0;
+		int nId = 0;
+		int cId = 0;
+		Fname = new char[50];
+		cout << "cId: " << endl;
+		cin >> cId;
+		cout << "First Name: " << endl;
+		cin.ignore();
+		cin.getline(Fname, 50);
+		cout << "Last Name: " << endl;
+		Lname = new char[50];
+		cin.ignore();
+		cin.getline(Lname, 50);
+		n.setlName(Lname);
+		n.setfName(Fname);
+		cout << "Day: " << endl;
+		cin >> day;
+		cout << "Month: " << endl;
+		cin >> month;
+		cout << "Year: " << endl;
+		cin >> year;
+		d.setday(day);
+		d.setmonth(month);
+		d.setyear(year);
+		cout << "Age: " << endl;
+		cin >> age;
+		cout << "Nid: " << endl;
+		cin >> nId;
+		file << endl << Fname << "," << Lname << "," << day << "/" << month << "/" << year << "," << cId << "," << age << "," << nId << endl;
+		file.close();
+		Customer c2;
+		c2.setcId(cId);
+		c2.setname(n);
+		c2.setdob(d);
+		c2.setage(age);
+		c2.setnid(nId);
+		Customer* c3;
+		c3 = new Customer[csize];
+		for (int i = 0; i < csize; i++)
+		{
+			c3[i] = c1[i];
+		}
+		delete[]c1;
+		csize++;
+		c1 = new Customer[csize];
+		for (int i = 0; i < csize - 1; i++)
+		{
+			c1[i] = c3[i];
+		}
+		c1[csize - 1] = c2;
+		setcust(c1, csize);
+		//printcust();
+	}
+
+};
+int main()
+{
+	tms T;
+	T.loadfiles();
+
+	int inp = 0;
+	int dId = 0;
+	int noflicenses = 0;
+	float overrank = 0;
+	float salary = 0;
+	int exp = 0;
+	int status = 0;
+	string Fname;
+	string Lname;
+	int day = 0;
+	int month = 0;
+	int year = 0;
+	int age = 0;
+	int nId = 0;
+	int cId = 0;
+	while (inp != -1)
+	{
+		cout << "1. Add a new Customer" << endl;
+		cout << "2. Add or remove a Driver" << endl;
+		cout << "3. Add or remove a Vehicle" << endl;
+		cout << "4. Print List of All Customers" << endl;
+		cout << "5. Print List of All drivers" << endl;
+		cout << "6. Print complete list of vehicles with details by their category" << endl;
+		cout << "7. Print complete details and service history of a particular vehicle" << endl;
+		cout << "8. Print complete history of a particular customer" << endl;
+		cout << "9. Print complete history of a driver including services" << endl;
+		cout << "10. Print list of all drivers who have ranking above 4.5" << endl;
+		cout << "11. Print list of all drivers who have multiple licenses and their license information too" << endl;
+		cout << "12. Print updated salary of all drivers based on their updated ranking" << endl;
+		cout << "13. Add service request" << endl;
+		cout << "14.Cancel request" << endl;
+		cout << "15.Service completion" << endl;
+		cout << "16.Print list of all customers who used the same vehicle in a ride service on different date" << endl;
+		cout << "17.Print the list of all drivers who completed delivery services on same days" << endl;
+		cout << "18.Print list of all pending services on a particular date" << endl;
+		cout << "19.Print details of all pending services of a particular driver" << endl;
+		cout << "20. Print details of all cancelled services by a customer" << endl;
+		cout << "-1 to exit" << endl;
+		cin >> inp;
+		fstream file;
+		if (inp == 1)
+		{
+			T.addcust();
+		}
+		if (inp == 2)
+		{
+			file.open("Driver1.txt", ios::app);
+			cout << "1. Add" << endl;
+			cout << "2. Remove" << endl;
+			cin >> inp;
+			if (inp == 1)
+			{
+				T.adddriver();
+			}
+			else if (inp == 2)
+			{
+				int id = 0;
+				cout << "Enter id of driver to remove" << endl;
+				cin >> id;
+				T.removedriver(id);
+			}
+		}
+		if (inp == 3)
+		{
+			file.open("vehicle.txt", ios::app);
+			cout << "1. Add" << endl;
+			cout << "2. Remove" << endl;
+			cin >> inp;
+			if (inp == 1)
+			{
+				T.addvehic();
+			}
+			else if (inp == 2)
+			{
+				int id = 0;
+				cout << "Enter id of driver to remove" << endl;
+				cin >> id;
+				T.removevehic(id);
+			}
+		}
+		if (inp == 4)
+		{
+			int a = 0;
+			T.printcust(a,4);
+		}
+		if (inp == 5)
+		{
+			T.printdriver(inp);
+		}
+		if (inp == 6)
+		{
+			cout << "Enter customer id" << endl;
+			int a;
+			cin >> a;
+			T.printcusthist(a);
+		}
+		if (inp == 7)
+		{
+			cout << "Enter vehicle id" << endl;
+			int a;
+			cin >> a;
+			T.printvehic(a);
+		}
+		if (inp == 8)
+		{
+			cout << "Enter customer id" << endl;
+			int a;
+			cin >> a;
+			T.printcust(a,8);
+		}
+		if (inp == 9)
+		{
+			T.printdriver(inp);
+		}
+		if (inp == 10)
+		{
+			T.printdriver(inp);
+		}
+		if (inp == 11)
+		{
+			T.printdriver(inp);
+		}
+		if (inp==12)
+		{
+			T.updatesalary();
+		}
+		if (inp==13)
+		{
+			T.printfreevehic(inp);
+		}
+		if (inp==14)
+		{
+			cout<<"Enter customer id to cancel the ride" << endl;
+			int a;
+			int b;
+			cin >> a;
+			cout << "Enter service id to cancel the ride" << endl;
+			cin >> b;
+			T.cancelride(a,b);
+		}
+		if (inp==15)
+		{
+			cout << "Enter service id" << endl;
+			int a = 0;
+			cin >> a;
+			T.updateservices(a);
+		}
+		if (inp==16)
+		{
+			T.printsamevehic();
+		}
+		if (inp==17)
+		{
+			T.printsamedriver();
+
+		}
+		if (inp==19)
+		{
+			T.printpendingdrive();
+		}
+		if (inp==18)
+		{
+			Date a;
+			int day = 0;
+			cout << "Enter day" << endl;
+			cin >> day;
+			int month = 0;
+			cout << "Enter month" << endl;
+			cin >> month;
+			int year = 0;
+			cout << "Enter year" << endl;
+			cin >> year;
+			a.setday(day);
+			a.setmonth(month);
+			a.setyear(year);
+			T.printpendingdate(a);
+		}
+		if (inp==20)
+		{
+			T.printcancelled();
+		}
+	}
+	T.deletememoryforall();
+	system("pause");
+}
